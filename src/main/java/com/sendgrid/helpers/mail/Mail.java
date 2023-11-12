@@ -117,6 +117,10 @@ public class Mail {
   @JsonProperty("reply_to")
   public Email replyTo;
 
+  /** The email's list of reply to addresses. */
+  @JsonProperty("reply_to_list")
+  public List<Email> replyToList;
+
   private static final ObjectMapper SORTED_MAPPER = new ObjectMapper();
 
   static {
@@ -503,6 +507,32 @@ public class Mail {
    */
   public void setReplyTo(Email replyTo) {
     this.replyTo = replyTo;
+  }
+
+  /**
+   * Get the email's reply to list.
+   *
+   * @return the reply to list.
+   */
+  @JsonProperty("reply_to_list")
+  public List<Email> getReplyToList() { return replyToList; }
+
+  /**
+   * Set the email's reply to list addresses.
+   *
+   * @param replyToList a list of reply to address.
+   */
+  public void setReplyTo(List<Email> replyToList) {
+    this.replyToList = replyToList;
+  }
+
+  /**
+   * Add a reply to address to the list.
+   *
+   * @param replyTo a reply to address.
+   */
+  public void addReplyTo(Email replyTo) {
+    this.replyToList = addToList(replyTo, this.replyToList);
   }
 
   /**
